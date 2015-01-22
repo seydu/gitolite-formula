@@ -52,6 +52,7 @@ perl-Data-Dumper:
 
 install_gitolite_{{ user.username }}:
   cmd.run:
+    - unless: test -f {{ home }}/bin/gitolite
     - name: {{ home }}/gitolite/install -ln {{ home }}/bin
     - user: {{ user.username }}
     - cwd: {{ home }}
@@ -69,4 +70,6 @@ setup_gitolite_{{ user.username }}:
     - require:
       - cmd: install_gitolite_{{ user.username }}
       - file: {{ home }}/gitolite-admin.pub
+    watch:
+      - cmd: install_gitolite_{{ user.username }}
 {% endfor %}
