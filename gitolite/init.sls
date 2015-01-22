@@ -61,7 +61,7 @@ install_gitolite_{{ user.username }}:
       - file: {{ home }}/bin
 
 setup_gitolite_{{ user.username }}:
-  cmd.run:
+  cmd.wait:
     - name: {{ home }}/gitolite/src/gitolite setup -pk {{ home }}/gitolite-admin.pub
     - user: {{ user.username }}
     - cwd: {{ home }}
