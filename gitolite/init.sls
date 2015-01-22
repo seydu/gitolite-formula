@@ -70,6 +70,6 @@ setup_gitolite_{{ user.username }}:
     - require:
       - cmd: install_gitolite_{{ user.username }}
       - file: {{ home }}/gitolite-admin.pub
-    watch:
+    - watch:
       - cmd: install_gitolite_{{ user.username }}
 {% endfor %}
